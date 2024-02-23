@@ -1,4 +1,5 @@
 import time
+
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -9,6 +10,9 @@ from selenium.webdriver.support import expected_conditions as EC
 def step_impl(context):
     context.driver = webdriver.Chrome()
     context.driver.get("https://www.saucedemo.com/")
+    
+    
+
 
 @when('Ingreso mis credenciales válidas "{username}" "{pwd}"')
 def step_impl(context, username, pwd):
@@ -60,4 +64,6 @@ def step_impl(context,username,pwd):
 @then('Aparece un mensaje de error')
 def step_impl(context):
     time.sleep(2)
+
+
     context.driver.close()
