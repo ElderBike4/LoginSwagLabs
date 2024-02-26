@@ -11,7 +11,7 @@ from functions import funcionesAuxiliares
 def step_impl(context):
     context.driver = webdriver.Chrome()
     context.driver.get("https://www.saucedemo.com/")
-    funcionesAuxiliares.captura_pantalla(context,"Login")
+    
     
 
 @when('Ingreso mis credenciales válidas "{username}" "{pwd}"')
