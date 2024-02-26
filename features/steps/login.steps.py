@@ -5,7 +5,11 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from functions import funcionesAuxiliares
+from functions.funciones_auxiliares import(
+    captura_pantalla_allure,
+    agregar_screenshot_allure,
+    captura_allure
+)
 
 @given('Que estoy en la página de login')
 def step_impl(context):
@@ -13,16 +17,8 @@ def step_impl(context):
         context.driver = webdriver.Chrome()
         context.driver.get("https://www.saucedemo.com/")
         screenshot_path = f"./reports/inicio.png"
-        context.driver.save_screenshot(screenshot_path)
-        with open(screenshot_path,"rb") as image_file:
-            image_content = image_file.read()
-        allure.attach(
-            body=image_content,
-            name="inicio",
-            attachment_type=allure.attachment_type.PNG
-        )
-        
-
+        #agregar_screenshot_allure(context,screenshot_path)
+        captura_allure("login")
     except Exception as e:
         print("Error:", e)
     
@@ -40,6 +36,8 @@ def step_impl(context, username, pwd):
             EC.presence_of_element_located((By.ID, "password"))
         )
         element.send_keys(pwd)
+        #agregar_screenshot_allure(context=context,screenshot_path=screenshot_path)
+        
     except Exception as e:
         print("Error:", e)
 
