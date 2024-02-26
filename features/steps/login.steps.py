@@ -37,7 +37,7 @@ def step_impl(context, username, pwd):
         )
         element.send_keys(pwd)
         #agregar_screenshot_allure(context=context,screenshot_path=screenshot_path)
-        
+        captura_allure("credenciales")
     except Exception as e:
         print("Error:", e)
 
@@ -54,6 +54,8 @@ def step_impl(context):
 @then('Se muestra la página principal')
 def step_impl(context):
     time.sleep(2)
+    captura_allure("menu")
+    time.sleep(2)
     context.driver.close()
 
 
@@ -69,12 +71,13 @@ def step_impl(context,username,pwd):
             EC.presence_of_element_located((By.ID, "password"))
         )
         element.send_keys(pwd)
+        captura_allure("Credenciales inválidas")
     except Exception as e:
         print("Error:", e)
 
 
 @then('Aparece un mensaje de error')
 def step_impl(context):
+    captura_allure("Mensaje de error")
     time.sleep(2)
-
     context.driver.close()
