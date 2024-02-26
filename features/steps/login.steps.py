@@ -1,5 +1,5 @@
 import time
-
+import allure
 from behave import *
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -9,8 +9,18 @@ from functions import funcionesAuxiliares
 
 @given('Que estoy en la página de login')
 def step_impl(context):
-    context.driver = webdriver.Chrome()
-    context.driver.get("https://www.saucedemo.com/")
+    try:
+        context.driver = webdriver.Chrome()
+        context.driver.get("https://www.saucedemo.com/")
+        screenshot_path = f"./reports/inicio.png"
+        context.driver.save_screenshot(screenshot_path)
+
+        allure.attach.file(
+            screenshot_path,name = "login",
+            attachment_type = allure.attachment_type.PNG
+        )
+    except Exception as e:
+        print("Error:", e)
     
     
 
