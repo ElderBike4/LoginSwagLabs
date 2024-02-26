@@ -12,12 +12,13 @@ def step_impl(context):
     try:
         context.driver = webdriver.Chrome()
         context.driver.get("https://www.saucedemo.com/")
-        screenshot_path = f"./reports/{login}.png"
+        screenshot_path = f"./reports/login.png"
         context.driver.save_screenshot(screenshot_path)
 
-        allure.attach.file(
-            screenshot_path,name = "login",
-            attachment_type = allure.attachment_type.PNG
+        allure.attach(
+            file=screenshot_path,
+            name="login",
+            attachment_type=allure.attachment_type.PNG
         )
     except Exception as e:
         allure.attach(str(e), name = "Error al tomar la captura de pantalla")
