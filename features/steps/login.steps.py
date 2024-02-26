@@ -54,8 +54,6 @@ def step_impl(context):
 @then('Se muestra la página principal')
 def step_impl(context):
     time.sleep(2)
-    captura_allure("menu")
-    time.sleep(2)
     context.driver.close()
 
 
