@@ -12,18 +12,20 @@ def step_impl(context):
     try:
         context.driver = webdriver.Chrome()
         context.driver.get("https://www.saucedemo.com/")
-        
-        funcionesAuxiliares.captura_pantalla_allure(context,"Captura de login")
-        '''
         screenshot_path = f"./reports/inicio.png"
         context.driver.save_screenshot(screenshot_path)
-        allure.attach.file(
-            screenshot_path,name = "login",
-            attachment_type = allure.attachment_type.PNG
+        with open(screenshot_path,"rb") as image_file:
+            image_content = image_file.read()
+        allure.attach(
+            body=image_content,
+            name="inicio",
+            attachment_type=allure.attachment_type.PNG
         )
-        '''
+        
+
     except Exception as e:
-        print("Error:", e) 
+        print("Error:", e)
+    
     
 
 @when('Ingreso mis credenciales válidas "{username}" "{pwd}"')
