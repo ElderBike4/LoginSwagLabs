@@ -5,14 +5,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from functions import funcionesAuxiliares
 
 @given('Que estoy en la página de login')
 def step_impl(context):
     context.driver = webdriver.Chrome()
     context.driver.get("https://www.saucedemo.com/")
+    funcionesAuxiliares.captura_pantalla(context,"Login")
     
-    
-
 
 @when('Ingreso mis credenciales válidas "{username}" "{pwd}"')
 def step_impl(context, username, pwd):
@@ -64,6 +64,5 @@ def step_impl(context,username,pwd):
 @then('Aparece un mensaje de error')
 def step_impl(context):
     time.sleep(2)
-
 
     context.driver.close()
