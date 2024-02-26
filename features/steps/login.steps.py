@@ -13,8 +13,7 @@ def step_impl(context):
         context.driver = webdriver.Chrome()
         context.driver.get("https://www.saucedemo.com/")
         
-        funcionesAuxiliares.captura_pantalla_allure(context,'Login de la pagina')
-        
+        funcionesAuxiliares.captura_pantalla_allure(context,"Captura de login")
         '''
         screenshot_path = f"./reports/inicio.png"
         context.driver.save_screenshot(screenshot_path)
